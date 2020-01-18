@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="static/css/card.css">
+
+    <title>Search</title>
+</head>
+<header>Craiglist</header>
+<body>
+    <div class = 'container'>
+        <form id="content" action="new_search" method="POST">
+            {% csrf_token %}
+            <input type="text" name="search" class="input" id="search-input">
+            <button type="reset" class="waves-effect waves-light btn" id="search-btn">SEARCH</button>
+          </form>  
+    </div>
+    <div style="margin-top: 20px;" class="container">
+        <h2 style="text-align: center;">{{search}}</h2>
+        <div class = "row">
+        {% for post in final_postings %}
+        <div class="col s4">
+            <div class="card">
+              <div class="card-image">
+                <img src={{post.3}}>
+                <span class="card-title"></span>
+              </div>
+              <div class="card-content">
+                <p>{{post.0}}</p>
+              </div>
+              <div class="card-action">
+                <a href= {{post.1}}>Price - {{post.2}} </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>       
+</html>
